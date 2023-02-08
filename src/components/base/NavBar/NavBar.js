@@ -16,7 +16,7 @@ export default class NavBar extends Component {
         return this.props.items.map(it => {
             return (
                 <button key={it.title}
-                        className={this.getItemClassName(it)}
+                        className={"nav-link text-start " + (this.isActive(it) && "active")}
                         onClick={() => this.props.onItemSelected(it)}>
                     {it.title}
                 </button>
@@ -24,11 +24,7 @@ export default class NavBar extends Component {
         });
     }
 
-    getItemClassName(item) {
-        return [
-            "nav-link text-start",
-            item === this.props.currentItem ? "active" : ""
-        ].join(" ");
+    isActive(item) {
+        return item === this.props.currentItem;
     }
-
 }
