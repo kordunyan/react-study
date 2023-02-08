@@ -31,7 +31,11 @@ export class MainBody extends Component {
         return (
             <div className="row h-100">
                 <div className="border-end col-3">
-                    <NavBar onItemSelected={this.navbarItemSelected.bind(this)} currentItem={this.state.currentTab} items={this.state.navbarItems}/>
+                    <NavBar
+                        onItemSelected={this.navbarItemSelected.bind(this)}
+                        currentItem={this.state.currentTab}
+                        items={this.state.navbarItems}
+                    />
                 </div>
                 <div className="col-9">
                     <Content item={this.state.currentTab}/>
@@ -39,5 +43,4 @@ export class MainBody extends Component {
             </div>
         );
     }
-
 }
