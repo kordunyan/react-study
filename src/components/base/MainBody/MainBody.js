@@ -1,7 +1,8 @@
 import {useState} from "react";
 import NavBar from "../NavBar/NavBar";
-import Content from "../Content/Content";
-import {CONTENT, NAVBAR_ITEMS} from "../../../constants/constants";
+import {NAVBAR_ITEMS} from "../../../constants/constants";
+import {Posts} from "../Posts/Posts";
+import Users from "../Users/Users";
 
 export const MainBody = () => {
 
@@ -17,7 +18,8 @@ export const MainBody = () => {
                 />
             </div>
             <div className="col-9">
-                <Content item={CONTENT[currentTab]}/>
+                {currentTab === 'Posts' && <Posts/>}
+                {currentTab === 'Users' && <Users/>}
             </div>
         </div>
     );
