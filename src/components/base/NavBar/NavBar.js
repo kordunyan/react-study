@@ -15,10 +15,10 @@ export default class NavBar extends Component {
     getNavbarItems() {
         return this.props.items.map(it => {
             return (
-                <button key={it.title}
+                <button key={it}
                         className={"nav-link text-start " + (this.isActive(it) && "active")}
                         onClick={() => this.props.onItemSelected(it)}>
-                    {it.title}
+                    {it}
                 </button>
             );
         });
