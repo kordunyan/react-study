@@ -2,11 +2,18 @@ import {useState} from "react";
 import NavBar from "../NavBar/NavBar";
 import {NAVBAR_ITEMS} from "../../../constants/constants";
 import {Posts} from "../Posts/Posts";
-import Users from "../Users/Users";
+import Todos from "../Todos/Todos";
+
+const TABS_CONTENT = {
+    Posts: Posts,
+    TODOS: Todos
+};
 
 export const MainBody = () => {
 
     const [currentTab, setCurrentTab] = useState(NAVBAR_ITEMS[0])
+
+    const Component = TABS_CONTENT[currentTab];
 
     return (
         <div className="row h-100">
@@ -18,8 +25,7 @@ export const MainBody = () => {
                 />
             </div>
             <div className="col-9">
-                {currentTab === 'Posts' && <Posts/>}
-                {currentTab === 'Users' && <Users/>}
+                {Component && <Component/>}
             </div>
         </div>
     );
