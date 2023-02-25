@@ -1,39 +1,21 @@
-import {useContext, useEffect, useState} from "react";
-import axios from "axios";
 import {LoadingSpinner} from "../LoadingSpinner/LoadingSpinner";
 import {PostList} from "./PostList/PostList";
-import {UserContext} from "../../../constants/context";
+import {useUserContext} from "../../../constants/context";
 import {WarningAlert} from "../Alerts/WarningAlert";
+import {useFetchPosts} from "../../../HttpFetch/Hooks/Posts";
 
 export const Posts = () => {
-
-    const [isLoading, setLoading] = useState(false);
-    const [posts, setPosts] = useState([]);
-    const {userId} = useContext(UserContext);
-
-    useEffect(() => {
-        if (!userId) {
-            return;
-        }
-        setLoading(true);
-        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}/posts`, {
-            params: {
-                _page: 0,
-                _limit: 10
-            }
-        }).then((response) => setPosts(response.data))
-            .finally(() => setLoading(false));
-    }, [userId]);
-
+    const userId = useUserContext();
+    const {posts, isLoadingPosts} = useFetchPosts(userId)
 
     if (!userId) {
         return (
             <div className="mt-3">
-                <WarningAlert text='Please select a user id.' />
+                <WarningAlert text='Please select a user id.'/>
             </div>
         );
     }
-    if (isLoading) {
+    if (isLoadingPosts) {
         return (
             <div className="h-100">
                 <LoadingSpinner/>

@@ -3,7 +3,7 @@ import {UserIdForm} from "../../UserIdForm/UserIdForm";
 
 export const UserInputModal = (props) => {
 
-    const {onClose, onSetUser} = props;
+    const {onClose, onSetUser, currentUser} = props;
 
     return (
         <Modal onClose={onClose}>
@@ -12,7 +12,7 @@ export const UserInputModal = (props) => {
                 <button type="button" className="btn-close" onClick={onClose}></button>
             </div>
             <div className="modal-body">
-                <UserIdForm onSetUser={onSetUser}/>
+                <UserIdForm onSetUser={onSetUser} currentUser={currentUser}/>
             </div>
         </Modal>
     )

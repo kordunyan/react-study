@@ -21,6 +21,7 @@ function Header(props) {
             </div>
             {displayUserModal && <UserInputModal
                 onSetUser={onSetUser}
+                currentUser={currentUser}
                 onClose={() => setDisplayUserModal(false)}/>}
         </nav>
     )
