@@ -3,7 +3,8 @@ import {PostList} from "./PostList/PostList";
 import {WarningAlert} from "../Alerts/WarningAlert";
 import {useFetchPosts} from "../../../HttpFetch/Hooks/Posts";
 import {useUserStore} from "../../../store/features/UserStore";
-import {Pagination, usePagination} from "../Pagination/Pagination";
+import {Pagination} from "../Pagination/Pagination";
+import {usePagination} from "../Pagination/pagination-hooks";
 
 export const Posts = () => {
     const userId = useUserStore();

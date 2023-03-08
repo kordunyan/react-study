@@ -1,15 +1,6 @@
-import {Link, useSearchParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {usePagination} from "./pagination-hooks";
 
-export function usePagination() {
-    let [searchParams] = useSearchParams();
-    let [currentPage, setCurrentPage] = useState(null);
-
-    useEffect(() => {
-        setCurrentPage(searchParams.get('page'));
-    }, [searchParams]);
-    return currentPage;
-}
 
 export const Pagination = (props) => {
 
