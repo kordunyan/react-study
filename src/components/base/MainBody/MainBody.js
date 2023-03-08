@@ -1,31 +1,24 @@
-import {useState} from "react";
 import NavBar from "../NavBar/NavBar";
-import {NAVBAR_ITEMS} from "../../../constants/constants";
+import {Route, Routes} from "react-router-dom";
 import {Posts} from "../Posts/Posts";
 import Todos from "../Todos/Todos";
-
-const TABS_CONTENT = {
-    Posts: Posts,
-    TODOS: Todos
-};
+import {Home} from "../Home/Home";
+import {SignIn} from "../SignIn/SignIn";
+import {ProtectedRoute} from "../security/ProtectedRoute/protected-route";
 
 export const MainBody = () => {
-
-    const [currentTab, setCurrentTab] = useState(NAVBAR_ITEMS[0])
-
-    const Component = TABS_CONTENT[currentTab];
-
     return (
         <div className="row h-100">
             <div className="border-end col-3">
-                <NavBar
-                    onItemSelected={setCurrentTab}
-                    currentItem={currentTab}
-                    items={NAVBAR_ITEMS}
-                />
+                <NavBar/>
             </div>
             <div className="col-9">
-                {Component && <Component/>}
+                <Routes>
+                    <Route path='/' element={<Home/>}/>
+                    <Route path='/posts' element={<ProtectedRoute><Posts/></ProtectedRoute>} />
+                    <Route path='/todos' element={<ProtectedRoute><Todos/></ProtectedRoute>} />
+                    <Route path='/sign-in' element={<SignIn/>} />
+                </Routes>
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import axios from "axios";
 import {TodosList} from "./TodosList";
 import {LoadingSpinner} from "../LoadingSpinner/LoadingSpinner";
 import {WarningAlert} from "../Alerts/WarningAlert";
-import {TodosWithUserContext} from "./TodosWithUserContext";
+import {connect} from "react-redux";
 
 class Todos extends Component {
 
@@ -55,4 +55,11 @@ class Todos extends Component {
     }
 }
 
-export default TodosWithUserContext(Todos);
+const mapStateToProps = (state) => {
+    return {
+        userId: state.userStore.userId
+    }
+};
+
+export default connect(mapStateToProps)(Todos);
+

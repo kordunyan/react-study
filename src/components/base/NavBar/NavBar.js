@@ -1,4 +1,6 @@
 import {Component} from "react";
+import {NavLink} from "react-router-dom";
+import {URLs} from "../../../constants/constants";
 
 export default class NavBar extends Component {
 
@@ -13,18 +15,14 @@ export default class NavBar extends Component {
     }
 
     getNavbarItems() {
-        return this.props.items.map(it => {
+        return URLs.map(it => {
             return (
-                <button key={it}
-                        className={"nav-link text-start " + (this.isActive(it) && "active")}
-                        onClick={() => this.props.onItemSelected(it)}>
-                    {it}
-                </button>
+                <NavLink key={it.path}
+                         to={it.path}
+                         className={"nav-link text-start " + (({isActive, isPending}) => isActive && "active")}>
+                    {it.title}
+                </NavLink>
             );
         });
-    }
-
-    isActive(item) {
-        return item === this.props.currentItem;
     }
 }

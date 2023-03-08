@@ -1,12 +1,15 @@
 import {LoadingSpinner} from "../LoadingSpinner/LoadingSpinner";
 import {PostList} from "./PostList/PostList";
-import {useUserContext} from "../../../constants/context";
 import {WarningAlert} from "../Alerts/WarningAlert";
 import {useFetchPosts} from "../../../HttpFetch/Hooks/Posts";
+import {useUserStore} from "../../../store/features/UserStore";
+import {Pagination, usePagination} from "../Pagination/Pagination";
 
 export const Posts = () => {
-    const userId = useUserContext();
-    const {posts, isLoadingPosts} = useFetchPosts(userId)
+    const userId = useUserStore();
+    const currentPage = usePagination();
+    const {posts, isLoadingPosts} = useFetchPosts(userId, currentPage);
+
 
     if (!userId) {
         return (
@@ -24,7 +27,14 @@ export const Posts = () => {
     }
     return (
         <div className="h-100 m-4">
-            {posts.length ? <PostList posts={posts}/> : <WarningAlert text='No post for selected user'/>}
+            {posts.length ?
+                (<>
+                    <PostList posts={posts}/>
+                    <div className="my-3">
+                        <Pagination pages="5" basePath="/posts" />
+                    </div>
+                </>)
+                : <WarningAlert text='No post for selected user'/>}
         </div>
     )
 };
