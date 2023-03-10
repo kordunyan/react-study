@@ -10,7 +10,7 @@ export const ProtectedRoute = (props) => {
     const checkIsLoggedIn = () => {
         if (!isLoggedIn()) {
             setIsUserLoggedIn(false);
-            return navigate('/sign-in');
+            return navigate('/sign-in', {replace: true});
         }
         setIsUserLoggedIn(true);
     }

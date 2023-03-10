@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
 import {usePagination} from "./pagination-hooks";
 
-
 export const Pagination = (props) => {
 
     const currentPage = usePagination();
